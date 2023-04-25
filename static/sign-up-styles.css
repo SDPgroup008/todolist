@@ -1,0 +1,105 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    font-family: sans-serif;
+    background-position: center;
+    background-image: url(images/sign-up-backg.jpg);
+}
+ 
+h1{
+    text-align: center;
+    text-decoration: none;
+    color: rgb(8, 223, 238);
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+
+    
+}
+ 
+.sign-up-page{
+    width: 380px;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+
+}
+
+.sign-up-page p {
+    margin: 0;
+    color: lightblue;
+    padding: 0;
+    font-weight: bold;
+    padding-bottom: 5px;
+
+}
+
+.sign-up-page input{
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    align-self: center;
+    color: cadetblue;
+}
+
+.sign-up-page input[type="text"], input[type="password"], input[type="email"]{
+    height: 30px;
+    width: 90%;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    
+
+}
+button{
+    color: #fff;
+    width: 100%;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 15px;
+    margin: 10px 0;
+    cursor: pointer;
+
+}
+.signup-btn{
+    background-color: aqua;
+}
+
+.facebook-btn{
+    background-color: rgb(12, 26, 223);
+}
+a{
+    text-decoration: none;
+
+}
+hr{
+    margin-top: 20px;
+    width: 80%;
+}
+.signup-btn:hover{
+    color: rgb(0, 139, 74);
+}
+.sign-up-page button[type="button"]:hover{
+    cursor: pointer;
+    background: rgb(231, 216, 8);
+    color: #000;
+}
+
+img{
+    width: 70px;
+    margin-top: -50px;
+}
+
+
+
+
