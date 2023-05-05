@@ -11,8 +11,8 @@ def home(request):
     context = {'tasks': tasks}
     return render(request, 'home.html', context)
 
-def homepage(request):
-    return render(request,'home.html')
+# def homepage(request):
+#     return render(request,'home.html')
 
 
 def login_page(request):
@@ -42,9 +42,14 @@ def signup_page(request):
         return redirect('login')
 
 
-
     return render(request, 'signup.html')
 
 
 
+def add_task(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']
+        task = Task.objects.create(title=title, description=description)
+        return redirect('tasks:home')
 
