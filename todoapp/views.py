@@ -1,9 +1,15 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
+from .models import Task
  
 
 # Create your views here.
+
+def home(request):
+    tasks = Task.objects.all()
+    context = {'tasks': tasks}
+    return render(request, 'home.html', context)
 
 def homepage(request):
     return render(request,'home.html')
@@ -35,9 +41,10 @@ def signup_page(request):
         my_user.save()
         return redirect('login')
 
-        
-        
-
 
 
     return render(request, 'signup.html')
+
+
+
+
