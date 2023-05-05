@@ -4,7 +4,12 @@ from django.contrib.auth import authenticate,login
  
 
 # Create your views here.
-def login(request):
+
+def homepage(request):
+    return render(request,'home.html')
+
+
+def login_page(request):
     if request.method=='POST':
         username=request.POST.get('username')
         pass1=request.POST.get('pass')
@@ -21,7 +26,7 @@ def login(request):
     
 
 
-def signup(request):
+def signup_page(request):
     if request.method=='POST':
         uname=request.POST.get('username')
         email=request.POST.get('email')
