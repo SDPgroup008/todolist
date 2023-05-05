@@ -6,7 +6,7 @@ from .models import Task
 
 # Create your views here.
 
-def home(request):
+def homepage(request):
     tasks = Task.objects.all()
     context = {'tasks': tasks}
     return render(request, 'home.html', context)
