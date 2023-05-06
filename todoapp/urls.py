@@ -1,5 +1,5 @@
 
-from django.urls import path
+from django.urls import include, path
 from . import views
 
 urlpatterns=[
@@ -7,4 +7,5 @@ urlpatterns=[
     path('signup/', views.signup_page, name='signup'),
     path('home/', views.homepage, name='home'),
     path('add_task/', views.add_task, name='add_task'),
+    # path('tasks/', include('tasks.urls', namespace='tasks'))
 ]

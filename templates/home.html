@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>My To-Do List App</h1>
-<form method="POST" action="{% url 'tasks:add_task' %}">
+<form method="POST" action="{% url 'todoapp:add_task' %}">
     {% csrf_token %}
     <label for="title">Title:</label>
     <input type="text" id="title" name="title" required>

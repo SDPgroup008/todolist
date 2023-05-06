@@ -7,8 +7,8 @@ from .models import Task
 # Create your views here.
 
 def homepage(request):
-    tasks = Task.objects.all()
-    context = {'tasks': tasks}
+    todoapp = Task.objects.all()
+    context = {'todoapp': todoapp}
     return render(request, 'home.html', context)
 
 # def homepage(request):
@@ -50,6 +50,6 @@ def add_task(request):
     if request.method == 'POST':
         title = request.POST['title']
         description = request.POST['description']
-        task = Task.objects.create(title=title, description=description)
-        return redirect('tasks:home')
+        todoapp = Task.objects.create(title=title, description=description)
+        return redirect('todoapp:home')
 
