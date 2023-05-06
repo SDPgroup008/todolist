@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>My To-Do List App</h1>
+<form method="POST" action="{% url 'tasks:add_task' %}">
+    {% csrf_token %}
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+    <br>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+    <br>
+    <input type="submit" value="Add Task">
+</form>
+<ul>
+    {% for task in tasks %}
+        <li>
+            <input type="checkbox" {% if task.completed %}checked{% endif %}>
+            <strong>{{ task.title }}</strong>
+            <p>{{ task.description }}</p>
+        </li>
+    {% empty %}
+        <li>No tasks yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

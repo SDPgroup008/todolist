@@ -1,18 +1,18 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
-from .models import Task
+
  
 
 # Create your views here.
 
-def homepage(request):
-    todoapp = Task.objects.all()
-    context = {'todoapp': todoapp}
-    return render(request, 'home.html', context)
-
 # def homepage(request):
-#     return render(request,'home.html')
+#     tasks = Task.objects.all()
+#     context = {'tasks': tasks}
+#     return render(request, 'home.html', context)
+
+def homepage(request):
+     return render(request,'home.html')
 
 
 def login_page(request):
@@ -46,10 +46,4 @@ def signup_page(request):
 
 
 
-def add_task(request):
-    if request.method == 'POST':
-        title = request.POST['title']
-        description = request.POST['description']
-        todoapp = Task.objects.create(title=title, description=description)
-        return redirect('todoapp:home')
 
