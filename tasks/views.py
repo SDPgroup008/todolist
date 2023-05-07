@@ -24,7 +24,7 @@ def add_task(request):
             return redirect('tasks:task_list')
     else:
         form = TaskForm()
-    return render(request, 'add_task.html', {'form': form})
+    return render(request, 'home.html', {'form': form})
 
 def task_list(request):
     tasks = Task.objects.all()

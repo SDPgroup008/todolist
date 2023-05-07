@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
     <h1>My To-Do List App</h1>
+    <link rel="stylesheet" href="{% static 'tasks.css' %}">
+
     <a href="{% url 'tasks:add_task' %}">Add Task</a>
     <ul>
         {% for task in tasks %}
