@@ -21,12 +21,12 @@ def add_task(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('tasks:task_list')
+            return redirect('tasks:tasklist')
     else:
         form = TaskForm()
     return render(request, 'home.html', {'form': form})
 
-def task_list(request):
+def tasklist(request):
     tasks = Task.objects.all()
-    return render(request, 'task_list.html', {'tasks': tasks})
+    return render(request, 'tasklist.html', {'tasks': tasks})
 # Create your views here.
