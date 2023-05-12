@@ -57,7 +57,7 @@
           <li><a href="#">Completed</a></li>
           <li><a href="{% url 'home' %}">Add Task</a></li>
           <li class="dropdown">
-            <!-- <button class="dropdown-btn">Services</button> -->
+            
             <a href="#">taskss</a>
             <div class="dropdown-content">
               <a href="#">New</a>
@@ -70,23 +70,7 @@
       </nav>
       {% block content %}
 
-      <div class="container my-3">
-        <h2 class="text-center">Add new task</h2>
-        <form>
-            <div class="mb-3">
-              <p>Task name</p>
-              <input type="text" class="form-control"  >
-              
-            </div>
-            <div class="mb-3">
-              <p>Task description</p>
-              
-              <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
-            </div>
-           
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-      </div>
+  
       {% endblock %}
 
 

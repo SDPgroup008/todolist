@@ -1,6 +1,4 @@
-/* styles.css */
 
-/* General styles */
 body {
     font-family: Arial, sans-serif;
     margin: 30px;
@@ -23,7 +21,7 @@ li {
     text-align: center;
 }
 
-/* Task item styles */
+
 input[type="checkbox"] {
     margin-right: 10px;
 }
@@ -33,7 +31,7 @@ strong {
     
 }
 
-/* Add Task link styles */
+
 a {
     display: inline-block;
     margin-bottom: 10px;
@@ -45,23 +43,16 @@ a:hover {
     text-decoration: underline;
 }
 
-.todo-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .todo-text {
-    margin-right: 10px;
-  }
+
   
   .todo-buttons button {
-    margin-right: 5px;
-    padding: 5px 10px;
+    margin-right: 20px;
+    padding: 15px 20px;
     background-color: #333;
     color: #fff;
     border: none;
     cursor: pointer;
+    align-items: right;
   }
   
   .edit-button {
