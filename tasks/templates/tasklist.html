@@ -10,10 +10,7 @@
         {% for task in tasks %}
             <li>
                 <input type="checkbox" {% if task.completed %}checked{% endif %}>
-                <strong>{{ task.title }}</strong n\>   <div class="todo-buttons">
-                    <button class="edit-button">Edit</button>
-                    <button class="delete-button">Delete</button>
-                  </div>
+                <strong>{{ task.title }}</strong>   
                 <p>{{ task.description }}</p>
                 <div class="todo-buttons">
                     <button class="edit-button">Edit</button>
