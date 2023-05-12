@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delete Task</title>
+  <link rel="stylesheet" type="text/css" href="{%  static 'edit_delete.css' %}">
+</head>
+<body>
+  <h1>Delete Task</h1>
+  <form method="post" action="{% url 'delete_task' task.id %}">
+    {% csrf_token %}
+    <p>Are you sure you want to delete the task "{{ task.title }}"?</p>
+    <button type="submit">Delete</button>
+  </form>
+</body>
+</html>
