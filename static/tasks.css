@@ -44,3 +44,31 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .todo-text {
+    margin-right: 10px;
+  }
+  
+  .todo-buttons button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .edit-button {
+    background-color: #007bff;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+  }
+  
