@@ -1,54 +1,37 @@
-/* Navbar */
-.navbar {
-    background-color: #343a40; /* Dark background color */
+body {
+    margin: 0;
+    padding: 0;
   }
   
-  .navbar-brand {
-    color: #fff; /* Navbar brand text color */
-    font-weight: bold;
+  nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
   }
   
-  .nav-link {
-    color: #fff; /* Navbar links text color */
+  nav h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
   }
   
-  .nav-link:hover,
-  .nav-link:focus {
-    color: #fff; /* Navbar links text color on hover/focus */
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
   }
   
-  .dropdown-toggle::after {
-    display: none; /* Hide default dropdown toggle arrow */
+  nav ul li {
+    display: inline-block;
+    margin-right: 10px;
   }
   
-  .dropdown-menu {
-    background-color: #343a40; /* Dropdown menu background color */
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
   }
   
-  .dropdown-item {
-    color: #fff; /* Dropdown item text color */
-  }
-  
-  .dropdown-item:hover,
-  .dropdown-item:focus {
-    background-color: #6c757d; /* Background color on hover/focus */
-    color: #fff; /* Text color on hover/focus */
-  }
-  
-  /* Search form */
-  .form-control {
-    width: 200px; /* Adjust the width as needed */
-  }
-  
-  .btn-outline-success {
-    color: #28a745; /* Button text color */
-    border-color: #28a745; /* Button border color */
-  }
-  
-  .btn-outline-success:hover,
-  .btn-outline-success:focus {
-    color: #fff; /* Button text color on hover/focus */
-    background-color: #28a745; /* Button background color on hover/focus */
-    border-color: #28a745; /* Button border color on hover/focus */
+  .content {
+    margin: 20px;
   }
   
