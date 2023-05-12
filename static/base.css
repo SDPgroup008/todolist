@@ -1,0 +1,54 @@
+/* Navbar */
+.navbar {
+    background-color: #343a40; /* Dark background color */
+  }
+  
+  .navbar-brand {
+    color: #fff; /* Navbar brand text color */
+    font-weight: bold;
+  }
+  
+  .nav-link {
+    color: #fff; /* Navbar links text color */
+  }
+  
+  .nav-link:hover,
+  .nav-link:focus {
+    color: #fff; /* Navbar links text color on hover/focus */
+  }
+  
+  .dropdown-toggle::after {
+    display: none; /* Hide default dropdown toggle arrow */
+  }
+  
+  .dropdown-menu {
+    background-color: #343a40; /* Dropdown menu background color */
+  }
+  
+  .dropdown-item {
+    color: #fff; /* Dropdown item text color */
+  }
+  
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background-color: #6c757d; /* Background color on hover/focus */
+    color: #fff; /* Text color on hover/focus */
+  }
+  
+  /* Search form */
+  .form-control {
+    width: 200px; /* Adjust the width as needed */
+  }
+  
+  .btn-outline-success {
+    color: #28a745; /* Button text color */
+    border-color: #28a745; /* Button border color */
+  }
+  
+  .btn-outline-success:hover,
+  .btn-outline-success:focus {
+    color: #fff; /* Button text color on hover/focus */
+    background-color: #28a745; /* Button background color on hover/focus */
+    border-color: #28a745; /* Button border color on hover/focus */
+  }
+  
