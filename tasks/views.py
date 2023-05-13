@@ -30,8 +30,7 @@ def tasklist(request):
     tasks = Task.objects.all()
     return render(request, 'tasklist.html', {'tasks': tasks})
 # Create your views here.
-from django.shortcuts import render, redirect
-from tasks.models import Task
+
 
 def edit_task(request, task_id):
     task = Task.objects.get(pk=task_id)
@@ -44,6 +43,7 @@ def edit_task(request, task_id):
     
     context = {'task': task}
     return render(request, 'tasks/edit_task.html', context)
+
 
 def delete_task(request, task_id):
     task = Task.objects.get(pk=task_id)

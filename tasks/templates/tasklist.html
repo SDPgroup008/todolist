@@ -9,6 +9,7 @@
     <ul>
         {% for task in tasks %}
             <li>
+                <a href="{% url 'edit_task' pk=task.id %}">edit task</a>
                 <input type="checkbox" {% if task.completed %}checked{% endif %}>
                 <strong>{{ task.title }}</strong>   
                 <p>{{ task.description }}</p>
