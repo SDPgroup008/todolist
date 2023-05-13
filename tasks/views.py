@@ -40,7 +40,7 @@ def edit_task(request, task_id):
         task.description = request.POST['description']
         task.completed = request.POST.get('completed', False)
         task.save()
-        return redirect('tasks:task_list')
+        return redirect('tasks:tasklist')
     
     context = {'task': task}
     return render(request, 'tasks/edit_task.html', context)
@@ -49,7 +49,7 @@ def delete_task(request, task_id):
     task = Task.objects.get(pk=task_id)
     if request.method == 'POST':
         task.delete()
-        return redirect('tasks:task_list')
+        return redirect('tasks:tasklist')
     
     context = {'task': task}
     return render(request, 'tasks/delete_task.html', context)
