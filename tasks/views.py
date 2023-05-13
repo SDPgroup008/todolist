@@ -26,10 +26,10 @@ def add_task(request):
         form = TaskForm()
     return render(request, 'home.html', {'form': form})
 
-def tasklist(request):
+def task_list(request):
     tasks = Task.objects.all()
     return render(request, 'tasklist.html', {'tasks': tasks})
-# Create your views here.
+
 
 
 def edit_task(request, task_id):
@@ -42,7 +42,7 @@ def edit_task(request, task_id):
         return redirect('tasks:tasklist')
     
     context = {'task': task}
-    return render(request, 'tasks/edit_task.html', context)
+    return render(request, 'edit_task.html', context)
 
 
 def delete_task(request, task_id):
@@ -52,4 +52,4 @@ def delete_task(request, task_id):
         return redirect('tasks:tasklist')
     
     context = {'task': task}
-    return render(request, 'tasks/delete_task.html', context)
+    return render(request, 'delete_task.html', context)
