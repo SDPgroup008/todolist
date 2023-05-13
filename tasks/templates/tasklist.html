@@ -12,14 +12,11 @@
                 
                 <input type="checkbox" {% if task.completed %}checked{% endif %}>
                 <strong>{{ task.title }}</strong> 
-                <a href="{% url 'tasks:edit_task' task.id %}">Edit</a>
-                <a href="{% url 'tasks:delete_task' task.id %}">Delete</a>
+                <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
+                <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
 
                 <p>{{ task.description }}</p>
-                <div class="todo-buttons">
-                    <button class="edit-button">Edit</button>
-                    <button class="delete-button">Delete</button>
-                </div>
+                
                 
             </li>
         {% empty %}

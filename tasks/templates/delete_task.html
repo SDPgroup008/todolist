@@ -7,7 +7,9 @@
 </head>
 <body>
   <h1>Delete Task</h1>
-  <form method="post" action="{% url 'delete_task' task.id %}">
+  
+
+  <form method="post" action="{% url 'tasks:delete_task' task.id %}">
     {% csrf_token %}
     <p>Are you sure you want to delete the task "{{ task.title }}"?</p>
     <button type="submit">Delete</button>
