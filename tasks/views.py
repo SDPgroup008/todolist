@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Task
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from .forms import TaskForm
 
 def homepage(request):
@@ -57,18 +58,15 @@ def delete_task(request, task_id):
 
 
 
+
+
 def update_task_completion(request):
-    if request.method == 'POST' and request.is_ajax():
+    if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         task_id = request.POST.get('task_id')
-        completed = request.POST.get('completed')
+        completed = request.POST.get('completed') == 'true'
         
-        # Retrieve the task from the database
-        task = Task.objects.get(pk=task_id)
+        # Update the task completion status in the database
         
-        # Update the completion status of the task
-        task.completed = (completed == 'true')
-        task.save()
-        
-        return JsonResponse({'status': 'success'})
+        return JsonResponse({'message': 'Task completion status updated successfully.'})
     else:
-        return JsonResponse({'status': 'error'})
+        return JsonResponse({'error': 'Invalid request.'}, status=400)

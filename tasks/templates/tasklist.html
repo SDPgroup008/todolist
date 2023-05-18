@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
     <h1>My To-Do List</h1>
     <link rel="stylesheet" href="{% static 'tasks.css' %}">
 
     <a href="{% url 'tasks:add_task' %}">Add Task</a>
-    
+
     <h2>New Tasks</h2>
     {% for task in tasks %}
         {% if not task.completed %}
@@ -35,42 +36,27 @@
     {% load static %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
-    <ul>
-      {% for task in tasks %}
-        <li>
-          <input type="checkbox" {% if task.completed %}checked{% endif %} class="task-checkbox" data-task-id="{{ task.id }}">
-          <strong>{{ task.title }}</strong>
-          <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
-          <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
-          <p>{{ task.description }}</p>
-        </li>
-      {% endfor %}
-    </ul>
-    
+
     <script>
-      $(document).ready(function() {
-        $('.task-checkbox').change(function() {
-          var taskId = $(this).data('task-id');
-          var isChecked = $(this).is(':checked');
-    
-          // Send AJAX request to update the task completion status
-          $.ajax({
-            type: 'POST',
-            url: '{% url 'tasks:update_task_completion' %}',
-            data: {
-              task_id: taskId,
-              completed: isChecked ? 'true' : 'false',
-              csrfmiddlewaretoken: '{{ csrf_token }}'
-            },
-            success: function(response) {
-              // Handle the response if needed
-            },
-            error: function(xhr, textStatus, error) {
-              // Handle the error if needed
-            }
-          });
-        });
-      });
+        function toggleTaskCompletion(taskId) {
+            var isChecked = $('#task-' + taskId + '-checkbox').is(':checked');
+
+            // Send AJAX request to update the task completion status
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'tasks:update_task_completion' %}',
+                data: {
+                    task_id: taskId,
+                    completed: isChecked ? 'true' : 'false',
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    // Handle the response if needed
+                },
+                error: function(xhr, textStatus, error) {
+                    // Handle the error if needed
+                }
+            });
+        }
     </script>
-    
+{% endblock %}
