@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {% block content %}
     <h1>My To-Do List</h1>
     <link rel="stylesheet" href="{% static 'tasks.css' %}">
@@ -10,7 +10,7 @@
     {% for task in tasks %}
         {% if not task.completed %}
             <div class="task-item">
-                <input type="checkbox" {% if task.completed %}checked{% endif %}>
+                <input type="checkbox" id="task-{{ task.id }}-checkbox" {% if task.completed %}checked{% endif %} onchange="toggleTaskCompletion({{ task.id }})">
                 <strong>{{ task.title }}</strong>
                 <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
                 <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
@@ -23,7 +23,7 @@
     {% for task in tasks %}
         {% if task.completed %}
             <div class="task-item">
-                <input type="checkbox" checked>
+                <input type="checkbox" id="task-{{ task.id }}-checkbox" checked onchange="toggleTaskCompletion({{ task.id }})">
                 <strong>{{ task.title }}</strong>
                 <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
                 <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
@@ -31,4 +31,32 @@
             </div>
         {% endif %}
     {% endfor %}
+
+    <script>
+        function toggleTaskCompletion(taskId) {
+            const checkbox = document.getElementById(`task-${taskId}-checkbox`);
+            const completed = checkbox.checked;
+
+            // Send an AJAX request to update the task completion status
+            // You can use JavaScript fetch or any other AJAX library/framework
+
+            // Example using fetch:
+            fetch(`/api/tasks/${taskId}/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ completed }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response or update the UI accordingly
+                console.log(data);
+            })
+            .catch(error => {
+                // Handle errors
+                console.error(error);
+            });
+        }
+    </script>
 {% endblock %}
