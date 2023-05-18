@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Task
+from django.http import JsonResponse
 from .forms import TaskForm
 
 def homepage(request):
@@ -53,3 +54,13 @@ def delete_task(request, task_id):
     
     context = {'task': task}
     return render(request, 'delete_task.html', context)
+
+def update_task_completion(request, task_id):
+    if request.method == 'PATCH':
+        task = Task.objects.get(pk=task_id)
+        completed = request.POST.get('completed', False)
+        task.completed = completed
+        task.save()
+        return JsonResponse({'message': 'Task completion status updated successfully.'})
+    else:
+        return JsonResponse({'error': 'Invalid request method.'})
