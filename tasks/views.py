@@ -55,12 +55,20 @@ def delete_task(request, task_id):
     context = {'task': task}
     return render(request, 'delete_task.html', context)
 
-def update_task_completion(request, task_id):
-    if request.method == 'PATCH':
+
+
+def update_task_completion(request):
+    if request.method == 'POST' and request.is_ajax():
+        task_id = request.POST.get('task_id')
+        completed = request.POST.get('completed')
+        
+        # Retrieve the task from the database
         task = Task.objects.get(pk=task_id)
-        completed = request.POST.get('completed', False)
-        task.completed = completed
+        
+        # Update the completion status of the task
+        task.completed = (completed == 'true')
         task.save()
-        return JsonResponse({'message': 'Task completion status updated successfully.'})
+        
+        return JsonResponse({'status': 'success'})
     else:
-        return JsonResponse({'error': 'Invalid request method.'})
+        return JsonResponse({'status': 'error'})
