@@ -8,30 +8,34 @@
     <a href="{% url 'tasks:add_task' %}">Add Task</a>
 
     <h2>New Tasks</h2>
-    {% for task in tasks %}
-        {% if not task.completed %}
-            <div class="task-item">
-                <input type="checkbox" id="task-{{ task.id }}-checkbox" {% if task.completed %}checked{% endif %} onchange="toggleTaskCompletion({{ task.id }})">
-                <strong>{{ task.title }}</strong>
-                <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
-                <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
-                <p>{{ task.description }}</p>
-            </div>
-        {% endif %}
-    {% endfor %}
+    <div id="new-tasks-container">
+        {% for task in tasks %}
+            {% if not task.completed %}
+                <div class="task-item">
+                    <input type="checkbox" id="task-{{ task.id }}-checkbox" {% if task.completed %}checked{% endif %} onchange="toggleTaskCompletion({{ task.id }})">
+                    <strong>{{ task.title }}</strong>
+                    <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
+                    <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
+                    <p>{{ task.description }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
     <h2>Completed Tasks</h2>
-    {% for task in tasks %}
-        {% if task.completed %}
-            <div class="task-item">
-                <input type="checkbox" id="task-{{ task.id }}-checkbox" checked onchange="toggleTaskCompletion({{ task.id }})">
-                <strong>{{ task.title }}</strong>
-                <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
-                <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
-                <p>{{ task.description }}</p>
-            </div>
-        {% endif %}
-    {% endfor %}
+    <div id="completed-tasks-container">
+        {% for task in tasks %}
+            {% if task.completed %}
+                <div class="task-item">
+                    <input type="checkbox" id="task-{{ task.id }}-checkbox" checked onchange="toggleTaskCompletion({{ task.id }})">
+                    <strong>{{ task.title }}</strong>
+                    <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
+                    <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
+                    <p>{{ task.description }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
     {% load static %}
 
@@ -40,6 +44,11 @@
     <script>
         function toggleTaskCompletion(taskId) {
             var isChecked = $('#task-' + taskId + '-checkbox').is(':checked');
+            var taskContainer = isChecked ? $('#completed-tasks-container') : $('#new-tasks-container');
+            var taskItem = $('#task-' + taskId + '-checkbox').closest('.task-item');
+
+            // Move the task item to the appropriate container
+            taskContainer.append(taskItem);
 
             // Send AJAX request to update the task completion status
             $.ajax({
@@ -52,8 +61,6 @@
                 },
                 success: function(response) {
                     // Handle the response if needed
-                    // Reload the page to update the task lists
-                    location.reload();
                 },
                 error: function(xhr, textStatus, error) {
                     // Handle the error if needed
