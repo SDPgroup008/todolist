@@ -18,6 +18,7 @@
     <label for="completed">Completed:</label>
     <input type="checkbox" id="completed" name="completed" {% if task.completed %}checked{% endif %}>
     <button type="submit">Save</button>
+    <a href="{% url 'tasklist' %}">Cancel</a>
   </form>
 </body>
 </html>

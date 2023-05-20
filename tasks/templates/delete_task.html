@@ -13,6 +13,7 @@
     {% csrf_token %}
     <p>Are you sure you want to delete the task "{{ task.title }}"?</p>
     <button type="submit">Delete</button>
+    <a href="{% url 'tasklist' %}">Cancel</a>
   </form>
 </body>
 </html>
