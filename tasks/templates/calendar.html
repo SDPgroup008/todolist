@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>My Calendar</h1>
+    <div id="calendar"></div>
+
+    <script src="{% static 'fullcalendar/core/main.js' %}"></script>
+    <script src="{% static 'fullcalendar/daygrid/main.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid'],
+                events: '/events/'
+            });
+            calendar.render();
+        });
+    </script>
+{% endblock %}
