@@ -3,6 +3,7 @@ from .models import Task
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .forms import TaskForm
+from .models import Event
 
 def homepage(request):
     tasks = Task.objects.all()
@@ -70,3 +71,19 @@ def update_task_completion(request):
         return JsonResponse({'message': 'Task completion status updated successfully.'})
     else:
         return JsonResponse({'error': 'Invalid request.'}, status=400)
+    
+
+
+def calendar_view(request):
+    return render(request, 'calendar.html')
+
+def load_events(request):
+    events = Event.objects.all()
+    data = []
+    for event in events:
+        data.append({
+            'title': event.title,
+            'start': event.start_datetime.isoformat(),
+            'end': event.end_datetime.isoformat(),
+        })
+    return JsonResponse(data, safe=False)
