@@ -17,6 +17,7 @@
                     <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
                     <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
                     <p>{{ task.description }}</p>
+                    <p>Due Date: {{ task.due_date }}</p>
                 </div>
             {% endif %}
         {% endfor %}
@@ -33,6 +34,7 @@
                     <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
                     <button class="due-date-button" onclick="location.href='{% url 'tasks:calendar' task.id %}'">due date</button>
                     <p>{{ task.description }}</p>
+                    <p>Due Date: {{ task.due_date }}</p>
                 </div>
             {% endif %}
         {% endfor %}
