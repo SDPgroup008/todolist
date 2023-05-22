@@ -11,11 +11,16 @@ def homepage(request):
     context = {'tasks': tasks}
     return render(request, 'home.html', context)
 
+from django.shortcuts import render, redirect
+from .forms import TaskForm
+
 def add_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
+            task = form.save(commit=False)
+            task.due_date = form.cleaned_data['due_date']
+            task.save()
             return redirect('tasks:tasklist')
     else:
         form = TaskForm()
