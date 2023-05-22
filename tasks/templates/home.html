@@ -25,6 +25,7 @@
             <input type="checkbox" {% if task.completed %}checked{% endif %}>
             <strong>{{ task.title }}</strong>
             <p>{{ task.description }}</p>
+            {{ form.as_p }}
         </li>
     {% empty %}
         <li>No tasks yet.</li>

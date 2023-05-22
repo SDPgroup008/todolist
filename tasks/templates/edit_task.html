@@ -11,10 +11,8 @@
 
   <form method="post" action="{% url 'tasks:edit_task' task.id %}">
     {% csrf_token %}
-    <label for="title">Task Title:</label>
-    <input type="text" id="title" name="title" value="{{ task.title }}">
-    <label for="description">Task Description:</label>
-    <textarea id="description" name="description">{{ task.description }}</textarea>
+    {{ form.as_p }}
+    
     <label for="completed">Completed:</label>
     <input type="checkbox" id="completed" name="completed" {% if task.completed %}checked{% endif %}>
     <button type="submit">Save</button>
