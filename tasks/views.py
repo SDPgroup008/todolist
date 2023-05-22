@@ -21,6 +21,7 @@ def add_task(request):
         form = TaskForm()
     return render(request, 'home.html', {'form': form})
 
+
 def task_list(request):
     tasks = Task.objects.all()
     return render(request, 'tasklist.html', {'tasks': tasks})
@@ -28,14 +29,14 @@ def task_list(request):
 def edit_task(request, task_id):
     task = Task.objects.get(pk=task_id)
     if request.method == 'POST':
-        task.title = request.POST['title']
-        task.description = request.POST['description']
-        task.completed = request.POST.get('completed', False)
-        task.save()
-        return redirect('tasks:tasklist')
-    
-    context = {'task': task}
-    return render(request, 'edit_task.html', context)
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('tasks:tasklist')
+
+    form = TaskForm(instance=task)
+    return render(request, 'edit_task.html', {'form': form, 'task': task})
+
 
 def delete_task(request, task_id):
     task = Task.objects.get(pk=task_id)
