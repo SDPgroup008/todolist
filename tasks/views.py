@@ -3,7 +3,8 @@ from .models import Task
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .forms import TaskForm
-from .models import Event
+from datetime import date, timedelta
+# from .models import Event
 
 def homepage(request):
     tasks = Task.objects.all()
@@ -87,3 +88,22 @@ def update_task_completion(request):
 #             'end': event.end_datetime.isoformat(),
 #         })
 #     return JsonResponse(data, safe=False)
+
+
+
+def calendar_view(request):
+    # Get the current date
+    today = date.today()
+
+    # Calculate the start and end dates for the calendar view
+    start_date = today - timedelta(days=today.weekday())
+    end_date = start_date + timedelta(days=6)
+
+    # Generate a list of dates within the range
+    calendar_dates = []
+    current_date = start_date
+    while current_date <= end_date:
+        calendar_dates.append(current_date)
+        current_date += timedelta(days=1)
+
+    return render(request, 'calendar.html', {'dates': calendar_dates})
