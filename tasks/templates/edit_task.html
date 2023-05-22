@@ -13,8 +13,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     
-    <label for="completed">Completed:</label>
-    <input type="checkbox" id="completed" name="completed" {% if task.completed %}checked{% endif %}>
+    
     <button type="submit">Save</button>
     <a href="{% url 'tasks:tasklist' %}">Cancel</a>
   </form>
