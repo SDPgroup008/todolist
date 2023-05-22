@@ -18,13 +18,12 @@ def add_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            task = form.save(commit=False)
-            task.due_date = form.cleaned_data['due_date']
-            task.save()
+            form.save()
             return redirect('tasks:tasklist')
     else:
         form = TaskForm()
     return render(request, 'home.html', {'form': form})
+
 
 
 def task_list(request):
