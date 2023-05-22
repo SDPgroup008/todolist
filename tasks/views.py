@@ -33,9 +33,10 @@ def edit_task(request, task_id):
         if form.is_valid():
             form.save()
             return redirect('tasks:tasklist')
+    else:
+        form = TaskForm(instance=task)
+    return render(request, 'edit_task.html', {'form': form})
 
-    form = TaskForm(instance=task)
-    return render(request, 'edit_task.html', {'form': form, 'task': task})
 
 
 def delete_task(request, task_id):
