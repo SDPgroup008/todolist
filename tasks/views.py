@@ -74,16 +74,16 @@ def update_task_completion(request):
     
 
 
-def calendar_view(request):
-    return render(request, 'calendar.html')
+# def calendar_view(request):
+#     return render(request, 'calendar.html')
 
-def load_events(request):
-    events = Event.objects.all()
-    data = []
-    for event in events:
-        data.append({
-            'title': event.title,
-            'start': event.start_datetime.isoformat(),
-            'end': event.end_datetime.isoformat(),
-        })
-    return JsonResponse(data, safe=False)
+# def load_events(request):
+#     events = Event.objects.all()
+#     data = []
+#     for event in events:
+#         data.append({
+#             'title': event.title,
+#             'start': event.start_datetime.isoformat(),
+#             'end': event.end_datetime.isoformat(),
+#         })
+#     return JsonResponse(data, safe=False)
