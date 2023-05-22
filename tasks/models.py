@@ -11,12 +11,12 @@ class Task(models.Model):
 
 
 
-# class Event(models.Model):
-#     title = models.CharField(max_length=200)
-#     start_datetime = models.DateTimeField()
-#     end_datetime = models.DateTimeField()
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    start_datetime = models.DateTimeField()
+    end_datetime = models.DateTimeField()
 
-#     def __str__(self):
-#         return self.title
+    def __str__(self):
+        return self.title
 
 # Create your models here.

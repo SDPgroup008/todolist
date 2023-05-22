@@ -1,39 +1,25 @@
-<!-- {% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <h1>My Calendar</h1>
-    <div id="calendar"></div>
+ 
 
-    <script src="{% static 'fullcalendar/@fullcalendar/core/main.js' %}">calendar</script>
-    <script src="{% static 'fullcalendar/@fullcalendar/daygrid/main.js' %}">cale</script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['dayGrid'],
-                events: '/events/'
-            });
-            calendar.render();
-        });
-    </script>
-{% endblock %} -->
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Calendar</title>
+    <link rel="stylesheet" href="{% static 'calendar.css' %}" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
 </head>
-{% for date in dates %}
-    <p>{{ date }}</p>
-{% endfor %}
-
 <body>
     <div id="calendar"></div>
-
+    {% for date in dates %}
+        <p>{{ date }}</p>
+    {% endfor %}
     <script>
         $(document).ready(function() {
             $('#calendar').fullCalendar({
@@ -55,26 +41,25 @@
                         start: '2023-05-10',
                         end: '2023-05-12'
                     }
-                ]
+                ],
                 events: function(start, end, timezone, callback) {
                     // Fetch events from an API endpoint or database
                     $.ajax({
                         url: '/api/events',
                         dataType: 'json',
                         success: function(data) {
-                           // Process the fetched event data
-                           var events = [];
-                           for (var i = 0; i < data.length; i++) {
-                               events.push({
-                                  title: data[i].title,
-                                  start: data[i].start,
-                                  end: data[i].end
-                               });
+                            // Process the fetched event data
+                            var events = [];
+                            for (var i = 0; i < data.length; i++) {
+                                events.push({
+                                    title: data[i].title,
+                                    start: data[i].start,
+                                    end: data[i].end
+                                });
                             }
                             // Pass the processed event data to the calendar
                             callback(events);
                         }
-                
                     });
                 }
             });
@@ -82,3 +67,5 @@
     </script>
 </body>
 </html>
+
+{% endblock %}

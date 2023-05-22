@@ -1,0 +1,13 @@
+/* Custom styles for the calendar */
+#calendar {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Additional styles for the date section */
+  p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  
