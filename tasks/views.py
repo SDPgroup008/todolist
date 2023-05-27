@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import TaskForm
 from datetime import date, timedelta
 from .models import Event
+from datetime import datetime
+from django.utils.timezone import make_aware
 
 def homepage(request):
     tasks = Task.objects.all()
@@ -18,31 +20,48 @@ def add_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
+            task = form.save(commit=False)
+            due_date = form.cleaned_data['due_date']
+            due_time = form.cleaned_data['due_time']
+            due_datetime = datetime.combine(due_date, due_time)
+            task.due_datetime = make_aware(due_datetime)
+            task.save()
             return redirect('tasks:tasklist')
     else:
         form = TaskForm()
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'add_task.html', {'form': form})
 
 
 
 def task_list(request):
     tasks = Task.objects.all()
+    current_datetime = datetime.now()
+
+    for task in tasks:
+        remaining_time = task.due_datetime - current_datetime
+        task.remaining_time = remaining_time
+
     return render(request, 'tasklist.html', {'tasks': tasks})
 
 def edit_task(request, task_id):
     task = Task.objects.get(pk=task_id)
 
+def edit_task(request, task_id):
+    task = Task.objects.get(pk=task_id)
     if request.method == 'POST':
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
-            form.save()
+            task = form.save(commit=False)
+            due_date = form.cleaned_data['due_date']
+            due_time = form.cleaned_data['due_time']
+            due_datetime = datetime.combine(due_date, due_time)
+            task.due_datetime = make_aware(due_datetime)
+            task.save()
             return redirect('tasks:tasklist')
     else:
         form = TaskForm(instance=task)
+    return render(request, 'edit_task.html', {'form': form})
 
-    context = {'task': task, 'form': form}
-    return render(request, 'edit_task.html', context)
 
 
 

@@ -18,6 +18,7 @@
                     <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
                     <p>{{ task.description }}</p>
                     <p>Due Date: {{ task.due_date }}</p>
+                    <p>Remaining Time: {{ task.remaining_time }}</p>
                 </div>
             {% endif %}
         {% endfor %}
@@ -35,6 +36,7 @@
                     
                     <p>{{ task.description }}</p>
                     <p>Due Date: {{ task.due_date }}</p>
+                    <p>Remaining Time: {{ task.remaining_time }}</p>
                 </div>
             {% endif %}
         {% endfor %}

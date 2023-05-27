@@ -12,7 +12,11 @@
   <form method="post" action="{% url 'tasks:edit_task' task.id %}">
     {% csrf_token %}
     {{ form.as_p }}
-    
+    {{ form.title }}
+    {{ form.description }}
+    {{ form.completed }}
+    {{ form.due_date }}
+    {{ form.due_time }}
     
     <button type="submit">Save</button>
     <a href="{% url 'tasks:tasklist' %}">Cancel</a>

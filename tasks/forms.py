@@ -2,6 +2,9 @@ from django import forms
 from .models import Task
 
 class TaskForm(forms.ModelForm):
+    due_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    due_time = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
+
     class Meta:
         model = Task
-        fields = ['title', 'description', 'due_date', 'completed' ]
+        fields = ['title', 'description', 'completed', 'due_date', 'due_time']
