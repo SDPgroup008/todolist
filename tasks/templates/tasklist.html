@@ -4,9 +4,6 @@
 {% block content %}
     <h1>My To-Do List</h1>
     <link rel="stylesheet" href="{% static 'tasks.css' %}">
-
-    <a href="{% url 'tasks:add_task' %}">Add Task</a>
-
     <h2>New Tasks</h2>
     <div id="new-tasks-container">
         {% for task in tasks %}
@@ -14,11 +11,12 @@
                 <div class="task-item">
                     <input type="checkbox" id="task-{{ task.id }}-checkbox" {% if task.completed %}checked{% endif %} onchange="toggleTaskCompletion({{ task.id }})">
                     <strong>{{ task.title }}</strong>
-                    <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
-                    <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
+                    
                     <p>{{ task.description }}</p>
                     <p>Due Date: {{ task.due_date }}</p>
                     <p>Remaining Time: {{ task.remaining_time }}</p>
+                    <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
+                    <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
                 </div>
             {% endif %}
         {% endfor %}

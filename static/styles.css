@@ -1,9 +1,11 @@
-/* CSS for the To-Do List App */
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-position: center;
+    background-size: cover;
+    background-color: aquamarine;
   }
   
   .container {
@@ -30,7 +32,7 @@ body {
   input[type="text"],
   textarea {
     height: 40px;
-    width: 98%;
+    width: 90%;
     color: #000;
     font-size: 16px;
     outline: none;
@@ -49,17 +51,4 @@ body {
     margin-left: 10px;
   }
   
-  ul {
-    list-style: none;
-    padding: 0;
-    
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
-  input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  
+ 

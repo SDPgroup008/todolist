@@ -7,14 +7,14 @@ from datetime import date, timedelta
 from .models import Event
 from datetime import datetime
 from django.utils.timezone import make_aware
+from django.utils import timezone
 
 def homepage(request):
     tasks = Task.objects.all()
     context = {'tasks': tasks}
     return render(request, 'home.html', context)
 
-from django.shortcuts import render, redirect
-from .forms import TaskForm
+
 
 def add_task(request):
     if request.method == 'POST':
@@ -29,22 +29,29 @@ def add_task(request):
             return redirect('tasks:tasklist')
     else:
         form = TaskForm()
-    return render(request, 'add_task.html', {'form': form})
+    return render(request, 'home.html', {'form': form})
+
+
+
+
 
 
 
 def task_list(request):
     tasks = Task.objects.all()
-    current_datetime = datetime.now()
+    current_datetime = timezone.now()
 
     for task in tasks:
-        remaining_time = task.due_datetime - current_datetime
-        task.remaining_time = remaining_time
+        if task.due_datetime:
+            remaining_time = task.due_datetime - current_datetime
+            task.remaining_time = remaining_time
+        else:
+            task.remaining_time = None
 
     return render(request, 'tasklist.html', {'tasks': tasks})
 
-def edit_task(request, task_id):
-    task = Task.objects.get(pk=task_id)
+
+
 
 def edit_task(request, task_id):
     task = Task.objects.get(pk=task_id)
@@ -60,7 +67,8 @@ def edit_task(request, task_id):
             return redirect('tasks:tasklist')
     else:
         form = TaskForm(instance=task)
-    return render(request, 'edit_task.html', {'form': form})
+    return render(request, 'edit_task.html', {'form': form, 'task': task})
+
 
 
 
