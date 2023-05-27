@@ -1,16 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
  
 
-# Create your views here.
 
-# def homepage(request):
-#     tasks = Task.objects.all()
-#     context = {'tasks': tasks}
-#     return render(request, 'home.html', context)
-
+@login_required
 def homepage(request):
      return render(request,'home.html')
 
@@ -39,11 +35,16 @@ def signup_page(request):
         pass1=request.POST.get('password')
         my_user=User.objects.create_user(uname,email,pass1)
         my_user.save()
-        return redirect('login')
+        return redirect('home')
 
 
     return render(request, 'signup.html')
 
 
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
 
