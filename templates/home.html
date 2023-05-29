@@ -2,24 +2,25 @@
 
 {% block content %}
 {% load static %}
-<h1>Welcome to our ToDo App</h1>
+<h1>Welcome back</h1>
 <head>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
-<form method="POST" action="{% url 'tasks:add_task' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <label for="Title">Title:</label>
-    <input type="text"name="textarea" required>
-    <label for="description">Discription:</label>
-    <input type="text" name="textarea" required>
-    <label for="due_date">Due Date:</label>
-    <input type="date" id="due_date" name="due_date" required>
-    <br>
-    <label for="due_time">Due Time:</label>
-    <input type="time" id="due_time" name="due_time" required>
-    <br>
-    <button type="submit">Add Task</button>
-</form>
-
+<div class="addtask-box">
+  <form method="POST" action="{% url 'tasks:add_task' %}">
+      {% csrf_token %}
+      <h2> Write task here</h2>
+      <label for="Title">Title:</label>
+      <input type="text"name="textarea" required>
+      <label for="description">Discription:</label>
+      <input type="text" name="textarea" required>
+      <label for="due_date">Due Date:</label>
+      <input type="date" id="due_date" name="due_date" required>
+      <br>
+      <label for="due_time">Due Time:</label>
+      <input type="time" id="due_time" name="due_time" required>
+      <br>
+      <button type="submit">Add Task</button>
+  </form>
+</div>
 {% endblock %}

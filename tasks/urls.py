@@ -11,5 +11,6 @@ urlpatterns = [
     path('delete_task/<int:task_id>/', views.delete_task, name='delete_task'),
     path('update_task_completion/', views.update_task_completion, name='update_task_completion'),
     path('calendar/', views.calendar_view, name='calendar'),
-    path('events/', views.load_events, name='load_events'),  # Add this line
+    path('events/', views.load_events, name='load_events'),
+    
 ]

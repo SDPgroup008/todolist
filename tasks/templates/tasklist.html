@@ -11,12 +11,16 @@
                 <div class="task-item">
                     <input type="checkbox" id="task-{{ task.id }}-checkbox" {% if task.completed %}checked{% endif %} onchange="toggleTaskCompletion({{ task.id }})">
                     <strong>{{ task.title }}</strong>
-                    
                     <p>{{ task.description }}</p>
                     <p>Due Date: {{ task.due_date }}</p>
                     <p>Remaining Time: {{ task.remaining_time }}</p>
+                    
+                    <br>
+                </div>
+                <div class="edit-delete-btns">
                     <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
                     <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
+
                 </div>
             {% endif %}
         {% endfor %}
@@ -29,12 +33,15 @@
                 <div class="task-item">
                     <input type="checkbox" id="task-{{ task.id }}-checkbox" checked onchange="toggleTaskCompletion({{ task.id }})">
                     <strong>{{ task.title }}</strong>
-                    <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
-                    <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
-                    
                     <p>{{ task.description }}</p>
                     <p>Due Date: {{ task.due_date }}</p>
                     <p>Remaining Time: {{ task.remaining_time }}</p>
+                    <br>
+                </div>
+                <div class="edit-delete-btns">
+                    <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
+                    <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
+
                 </div>
             {% endif %}
         {% endfor %}

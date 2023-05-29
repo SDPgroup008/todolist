@@ -3,13 +3,18 @@ body {
     font-family: Arial, sans-serif;
     margin: 5px;
     padding: 20px;
+    background-image: url(images/tasks.jpg);
     
 }
 
 h1 {
     text-align: center;
+    color: antiquewhite;
 }
 
+h2 {
+  color: rgb(255, 230, 0);
+}
 ul {
     list-style-type: none;
     padding: 30px;
@@ -28,10 +33,35 @@ input[type="checkbox"] {
 
 strong {
     font-weight: bold;
+    color: rgb(240, 255, 30);
+    font-style: italic;
+    font-size: large;
+    text-align: center;
+    margin-left: 50px;
+    margin-top: 10px;
     
 }
+.edit-delete-btns {
+  margin-left: 450px;
+  margin-bottom: 50px;
+  margin-top: -30px;
 
 
+
+}
+.task-item {
+  width: 400px;
+  height: 170px;
+  background: #06b4f8d7;
+  color: #fff;
+  box-sizing: border-box;
+  
+
+}
+
+.task-item p {
+  margin-left: 15px;
+}
 a {
     display: inline-block;
     margin-bottom: 10px;
@@ -45,7 +75,7 @@ a:hover {
 
 
   
-  .todo-buttons button {
+.todo-buttons button {
     margin-right: 20px;
     padding: 15px 20px;
     background-color: #333;
@@ -53,23 +83,23 @@ a:hover {
     border: none;
     cursor: pointer;
     align-items: right;
-  }
+}
   
-  .edit-button {
+.edit-button {
     background-color: #007bff;
     cursor: pointer;
     margin-right: 10px;
     
-  }
+}
   
-  .delete-button {
+.delete-button {
     background-color: #dc3545;
     cursor: pointer;
     margin-right: 8px;
     
-  }
+}
 
-  .due-date-button {
+.due-date-button {
     background-color: aquamarine;
     cursor: pointer;
     margin-right: 20px;

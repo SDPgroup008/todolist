@@ -5,31 +5,44 @@ body {
     padding: 0;
     background-position: center;
     background-size: cover;
-    background-color: aquamarine;
+    background-image: url(images/avenger.jpg);
   }
   
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
+  .addtask-box{
+    width: 450px;
+    height: 400px;
+    background: #0d23e7cb;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    
+
+}
   h1 {
     text-align: center;
-    color: #0b57e4;
+    color: #330be4;
   }
   
   form {
     margin-bottom: 20px;
   }
   
-  label {
+  .addtask-box h2 {
+    text-align: center;
+    font-weight: bolder;
+    color: #f34d0b;
+  }
+  .addtask-box label {
     font-weight: bold;
     margin-left: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    margin-top: 30px;
   }
   
-  input[type="text"],
+  .addtask-box input[type="text"],
   textarea {
     height: 40px;
     width: 90%;
@@ -42,13 +55,14 @@ body {
     margin-left: 10px;
   }
   
-  button[type="submit"] {
+  .addtask-box button[type="submit"] {
     padding: 8px 20px;
     background-color: #4CAF50;
     color: #fff;
     border: none;
     cursor: pointer;
     margin-left: 10px;
+    margin-top: 20px;
   }
   
  

@@ -43,8 +43,11 @@ def signup_page(request):
 
 
 
-def logout_view(request):
-    logout(request)
-    return redirect('login')
 
 
+# def logout_view(request):
+#     logout(request)
+#     return render(request, 'logout.html')
+
+def logout_page(request):
+    return render(request, 'logout.html')

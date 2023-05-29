@@ -8,6 +8,7 @@ from .models import Event
 from datetime import datetime
 from django.utils.timezone import make_aware
 from django.utils import timezone
+# from django.contrib.auth import authenticate, login, logout
 
 def homepage(request):
     tasks = Task.objects.all()
@@ -120,3 +121,4 @@ def load_events(request):
             'end': event.end_datetime.isoformat(),
         })
     return JsonResponse(data, safe=False)
+
