@@ -18,7 +18,13 @@
 <body>
     <div id="calendar"></div>
     {% for date in dates %}
-        <p>{{ date }}</p>
+       <div class="date">{{ date }}</div>
+       {% for task in tasks %}
+           {% if task.due_date == date %}
+               <div class="task">{{ task.title }}</div>
+           {% endif %}
+       {% endfor %}
+        
     {% endfor %}
     <script>
         $(document).ready(function() {

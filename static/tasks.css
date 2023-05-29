@@ -1,15 +1,19 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin: 5px;
+   
     padding: 20px;
     background-image: url(images/tasks.jpg);
+    align-self: center;
+    
+   
     
 }
 
 h1 {
     text-align: center;
-    color: antiquewhite;
+    color: rgb(255, 115, 0);
+    
 }
 
 h2 {
@@ -33,7 +37,7 @@ input[type="checkbox"] {
 
 strong {
     font-weight: bold;
-    color: rgb(240, 255, 30);
+    color: rgb(23, 8, 230);
     font-style: italic;
     font-size: large;
     text-align: center;
@@ -42,23 +46,43 @@ strong {
     
 }
 .edit-delete-btns {
-  margin-left: 450px;
+  margin-left: 850px;
   margin-bottom: 50px;
   margin-top: -30px;
 
 
 
 }
+
+.titlee {
+  box-sizing: border-box;
+  width: 700px;
+  height: 25px;
+  background: #ffffffbe;
+  color: #007bff;
+  border-radius: 5%;
+}
 .task-item {
-  width: 400px;
-  height: 170px;
-  background: #06b4f8d7;
+  width: 700px;
+  height: 155px;
+  background: #4c8ea8c9;
   color: #fff;
   box-sizing: border-box;
+  border-radius: 5%;
+  left: 50%;
+
   
 
 }
-
+.date-time{
+  width: 700px;
+  height: 50px;
+  color: rgb(230, 14, 14);
+  background: rgba(255, 228, 196, 0.801);
+  box-sizing: border-box;
+  margin-top: 40px;
+  
+}
 .task-item p {
   margin-left: 15px;
 }
@@ -105,3 +129,14 @@ a:hover {
     margin-right: 20px;
   }
   
+form {
+    display: inline-block;
+    margin-left: 1300px;
+    border-radius: 5%;
+}
+@media (max-width: 768px) {
+    form {
+      display: block;
+      margin-bottom: 10px;
+    }
+}

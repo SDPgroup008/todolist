@@ -17,20 +17,22 @@
         <h1>Todo List</h1>
         <ul>
           <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'tasks:tasklist' %}">Tasks</a></li>
+          <li><a href="{% url 'tasks:tasklist' %}">My Tasks</a></li>
           <li><a href="{% url 'tasks:calendar' %}">Calendar</a></li>
-          <li><a href="{% url 'home' %}">Add Task</a></li>
+          
 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle">Tasks <i class="fas fa-chevron-down"></i></a>
+            <a href="#" class="dropdown-toggle">-Task-<i class="fas fa-chevron-down"></i></a>
             <div class="dropdown-content">
-              <a href="#">New</a>
-              <a href="#">Completed</a>
+              <a href="#new-tasks">New</a>
+              <a href="#completed-tasks">Completed</a>
               <a href="{% url 'logout' %}">Logout</a>
             </div>
           </li>
+
           
         </ul>
+
       </nav>
       {% block content %}
 

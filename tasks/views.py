@@ -8,7 +8,10 @@ from .models import Event
 from datetime import datetime
 from django.utils.timezone import make_aware
 from django.utils import timezone
-# from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
+from django.utils.safestring import mark_safe
+from django.urls import reverse_lazy
+import calendar
 
 def homepage(request):
     tasks = Task.objects.all()
@@ -35,23 +38,26 @@ def add_task(request):
 
 
 
-
-
-
 def task_list(request):
+    search_query = request.GET.get('search')
     tasks = Task.objects.all()
     current_datetime = timezone.now()
 
     for task in tasks:
+        print(task.due_datetime)
         if task.due_datetime:
             remaining_time = task.due_datetime - current_datetime
             task.remaining_time = remaining_time
         else:
             task.remaining_time = None
 
-    return render(request, 'tasklist.html', {'tasks': tasks})
+    if search_query:
+        tasks = tasks.filter(Q(title__icontains=search_query) | Q(description__icontains=search_query))
 
-
+    context = {
+        'tasks': tasks
+    }
+    return render(request, 'tasklist.html', context)
 
 
 def edit_task(request, task_id):
@@ -109,7 +115,12 @@ def calendar_view(request):
         calendar_dates.append(current_date)
         current_date += timedelta(days=1)
 
-    return render(request, 'calendar.html', {'dates': calendar_dates})
+    # Retrieve the tasks for the calendar view
+    tasks = Task.objects.filter(due_date__range=[start_date, end_date])
+
+    return render(request, 'calendar.html', {'dates': calendar_dates, 'tasks': tasks})
+
+
 
 def load_events(request):
     events = Event.objects.all()
