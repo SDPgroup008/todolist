@@ -50,7 +50,7 @@ body {
     color: #000;
     font-size: 16px;
     outline: none;
-    background: transparent;
+    background: rgba(128, 163, 93, 0.726);
     border-bottom: 1px solid #000;
     margin-bottom: 20px;
     margin-left: 10px;

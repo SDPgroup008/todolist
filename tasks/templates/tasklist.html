@@ -9,59 +9,57 @@
         <input type="text" name="search" placeholder="Search tasks">
         <button type="submit">Search</button>
     </form>
-      
-    <h2 id="new-tasks">New Tasks</h2>
-    <div id="new-tasks-container">
-        {% for task in tasks %}
-            {% if not task.completed %}
-                <div class="task-item">
-                    <div class="titlee">
-                        <input type="checkbox" id="task-{{ task.id }}-checkbox" {% if task.completed %}checked{% endif %} onchange="toggleTaskCompletion({{ task.id }})">
-                        <strong>{{ task.title }}</strong>
+    <div class="final">
+        <h2 id="new-tasks">New Tasks</h2>
+        <div id="new-tasks-container">
+            {% for task in new_tasks %}
+                {% if not task.completed %}
+                    <div class="task-item">
+                        <div class="titlee">
+                            <input type="checkbox" id="task-{{ task.id }}-checkbox" {% if task.completed %}checked{% endif %} onchange="toggleTaskCompletion({{ task.id }})">
+                            <strong>{{ task.title }}</strong>
+                        </div>
+                        <p>{{ task.description }}</p>
+                        <div class="date-time">
+                            <p>Due Date: {{ task.due_date }}</p>
+                            <p>Remaining Time: {{ task.remaining_time }}</p>   
+                        </div>
+                        <div class="edit-delete-btns">
+                            <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
+                            <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
+                        </div>
                     </div>
-
-                    <p>{{ task.description }}</p>
-                    <div class="date-time">
-                        <p>Due Date: {{ task.due_date }}</p>
-                        <p>Remaining Time: {{ task.remaining_time }}</p>   
+                {% endif %}
+            {% endfor %}
+        </div>
+    
+        <h2 id="completed-tasks">Completed Tasks</h2>
+        <div id="completed-tasks-container">
+            {% for task in completed_tasks %}
+                {% if task.completed %}
+                    <div class="task-item">
+                        <div class="titlee">
+                            <input type="checkbox" id="task-{{ task.id }}-checkbox" {% if task.completed %}checked{% endif %} onchange="toggleTaskCompletion({{ task.id }})">
+                            <strong>{{ task.title }}</strong>
+                        </div>
+                        <p>{{ task.description }}</p>
+                        <div class="date-time">
+                            <p>Due Date: {{ task.due_date }}</p>
+                            <p>Remaining Time: {{ task.remaining_time }}</p>   
+                        </div>
+                        <div class="edit-delete-btns">
+                            <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
+                            <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
+                        </div>   
                     </div>
+                {% endif %}
+            {% endfor %}
+        </div> 
 
-                    
-                </div>
 
-                <div class="edit-delete-btns">
-                    <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
-                    <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
-
-                </div>
-            {% endif %}
-        {% endfor %}
     </div>
-
-    <h2 id="completed-tasks">Completed Tasks</h2>
-    <div id="completed-tasks-container">
-        {% for task in tasks %}
-            {% if task.completed %}
-                <div class="task-item">
-                    <div class="titlee">
-                        <input type="checkbox" id="task-{{ task.id }}-checkbox" {% if task.completed %}checked{% endif %} onchange="toggleTaskCompletion({{ task.id }})">
-                        <strong>{{ task.title }}</strong>
-                    </div>
-                    <p>{{ task.description }}</p>
-                    <div class="date-time">
-                        <p>Due Date: {{ task.due_date }}</p>
-                        <p>Remaining Time: {{ task.remaining_time }}</p>   
-                    </div>
-
-                </div>
-                <div class="edit-delete-btns">
-                    <button class="edit-button" onclick="location.href='{% url 'tasks:edit_task' task.id %}'">Edit</button>
-                    <button class="delete-button" onclick="location.href='{% url 'tasks:delete_task' task.id %}'">Delete</button>
-
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
+ 
+    
 
     {% load static %}
 

@@ -9,6 +9,12 @@ body {
    
     
 }
+.final {
+  align-self: center;
+  
+  margin-left: 20%;
+}
+
 
 h1 {
     text-align: center;
@@ -70,6 +76,7 @@ strong {
   box-sizing: border-box;
   border-radius: 5%;
   left: 50%;
+  margin-bottom: 20px;
 
   
 
@@ -131,8 +138,8 @@ a:hover {
   
 form {
     display: inline-block;
-    margin-left: 1300px;
-    border-radius: 5%;
+    margin-left: 70%;
+    border-radius: 10%;
 }
 @media (max-width: 768px) {
     form {

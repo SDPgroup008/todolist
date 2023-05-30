@@ -12,7 +12,9 @@ from django.db.models import Q
 from django.utils.safestring import mark_safe
 from django.urls import reverse_lazy
 import calendar
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login')
 def homepage(request):
     tasks = Task.objects.all()
     context = {'tasks': tasks}
@@ -40,11 +42,11 @@ def add_task(request):
 
 def task_list(request):
     search_query = request.GET.get('search')
-    tasks = Task.objects.all()
+    new_tasks = Task.objects.filter(completed=False)
+    completed_tasks = Task.objects.filter(completed=True)
     current_datetime = timezone.now()
 
-    for task in tasks:
-        print(task.due_datetime)
+    for task in new_tasks:
         if task.due_datetime:
             remaining_time = task.due_datetime - current_datetime
             task.remaining_time = remaining_time
@@ -52,12 +54,15 @@ def task_list(request):
             task.remaining_time = None
 
     if search_query:
-        tasks = tasks.filter(Q(title__icontains=search_query) | Q(description__icontains=search_query))
+        new_tasks = new_tasks.filter(Q(title__icontains=search_query) | Q(description__icontains=search_query))
+        completed_tasks = completed_tasks.filter(Q(title__icontains=search_query) | Q(description__icontains=search_query))
 
     context = {
-        'tasks': tasks
+        'new_tasks': new_tasks,
+        'completed_tasks': completed_tasks
     }
     return render(request, 'tasklist.html', context)
+
 
 
 def edit_task(request, task_id):
