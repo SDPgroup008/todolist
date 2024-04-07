@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login')
 def homepage(request):
-     return render(request,'home.html')
+     return render(request,'index.html')
 
 
 def login_page(request):
@@ -18,7 +18,7 @@ def login_page(request):
         user=authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request,user)
-            return redirect('home')
+            return redirect('index')
         else:
             return HttpResponse("username or password is incorrect !!")
 
@@ -35,7 +35,7 @@ def signup_page(request):
         pass1=request.POST.get('password')
         my_user=User.objects.create_user(uname,email,pass1)
         my_user.save()
-        return redirect('home')
+        return redirect('index')
 
 
     return render(request, 'signup.html')

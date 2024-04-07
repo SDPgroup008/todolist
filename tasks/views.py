@@ -18,7 +18,7 @@ from django.contrib.auth.decorators import login_required
 def homepage(request):
     tasks = Task.objects.all()
     context = {'tasks': tasks}
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)
 
 
 
@@ -27,6 +27,7 @@ def add_task(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             task = form.save(commit=False)
+            task.owner = request.user
             due_date = form.cleaned_data['due_date']
             due_time = form.cleaned_data['due_time']
             due_datetime = datetime.combine(due_date, due_time)
@@ -35,12 +36,13 @@ def add_task(request):
             return redirect('tasks:tasklist')
     else:
         form = TaskForm()
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'index.html', {'form': form})
 
 
 
 
 def task_list(request):
+    tasks = Task.objects.filter(owner=request.user)
     search_query = request.GET.get('search')
     new_tasks = Task.objects.filter(completed=False)
     completed_tasks = Task.objects.filter(completed=True)
